@@ -1,0 +1,36 @@
+--BY DISTRICT
+
+CREATE VIEW "by_district" AS
+SELECT "district", SUM("families") AS "families",
+                    SUM("households") AS "households",
+                    SUM("population") "population",
+                    SUM("male") AS "male",
+                    SUM("female") AS "female"
+                    FROM "census"
+GROUP BY "district";
+
+
+-- RURAL
+
+CREATE VIEW "rural" AS
+SELECT * FROM "census"
+WHERE locality LIKE '%Rural%';
+
+
+-- MOST POPULATED 
+
+CREATE VIEW "most_populated" AS
+SELECT SUM("families"), SUM("households"), SUM("population"), SUM("male"), SUM("female") FROM "census"
+GROUP BY "district";
+
+
+-- TOTAL
+
+CREATE VIEW total AS
+SELECT
+    SUM(families)   AS families,
+    SUM(households) AS households,
+    SUM(population) AS population,
+    SUM(male)       AS male,
+    SUM(female)     AS female
+FROM census;
